@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/css';
-import { Alert, Button, ConfigProvider } from 'antd';
-import { DEFAULT_PAGE_SIZE } from '../../../shared/config/constants';
-import { useProducts } from '../../../entities/product';
+import { Alert, Button, ConfigProvider, TablePaginationConfig } from 'antd';
+import { DEFAULT_PAGE_SIZE, SORT_STORAGE_KEY } from '../../../shared/config/constants';
+import { Product, useProducts } from '../../../entities/product';
 import { PageSpinner } from '../../../shared/ui/PageSpinner';
 import { Navbar } from '../../../features/navbar';
 import { ProductsTable, TablePagination } from '../../../features/productsTable';
 import { PlusOutlined, ReloadOutlined } from '@ant-design/icons';
+import { SorterResult } from 'antd/es/table/interface';
 
 const pageStyle = css`
   background-color: #f6f6f6;
@@ -62,19 +63,77 @@ const addButtonStyle = css`
     background: #1a24b0;
   }
 `;
+// Тип сортировки
+type SortState = {
+  sortBy?: string;
+  order?: 'asc' | 'desc';
+};
 export const ProductsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = DEFAULT_PAGE_SIZE;
-  const skip = (currentPage - 1) * pageSize;
 
-  const { data, isLoading, isError, error, isFetching, refetch } = useProducts(pageSize, skip);
+  // Состояние сортировки – инициализируем из localStorage
+  const [sortState, setSortState] = useState<SortState>(() => {
+    const saved = localStorage.getItem(SORT_STORAGE_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return {};
+      }
+    }
+    return {};
+  });
+
+  // Сохраняем сортировку в localStorage при изменении
+  useEffect(() => {
+    localStorage.setItem(SORT_STORAGE_KEY, JSON.stringify(sortState));
+  }, [sortState]);
+
+  const skip = (currentPage - 1) * pageSize;
+  const { sortBy, order } = sortState;
+
+  const { data, isLoading, isError, error, isFetching, refetch } = useProducts(
+    pageSize,
+    skip,
+    sortBy,
+    order
+  );
 
   const products = data?.products ?? [];
   const totalItems = data?.total ?? 0;
 
   const startItem = totalItems === 0 ? 0 : skip + 1;
   const endItem = Math.min(currentPage * pageSize, totalItems);
+  // Обработчик сортировки
+  const handleTableChange = (
+    pagination: TablePaginationConfig,
+    filters: unknown,
+    sorter: SorterResult<Product> | SorterResult<Product>[]
+  ) => {
+    // Ant Design может вернуть массив при множественной сортировке, но мы используем одиночную
+    const singleSorter = Array.isArray(sorter) ? sorter[0] : sorter;
 
+    let newSortBy: string | undefined;
+    let newOrder: 'asc' | 'desc' | undefined;
+    if (singleSorter.order) {
+      // Маппим dataIndex на поля API
+      const fieldMap: Record<string, string> = {
+        name: 'title',
+        vendor: 'brand',
+        rating: 'rating',
+        price: 'price',
+      };
+
+      const field = singleSorter.field as string;
+      newSortBy = fieldMap[field] || field;
+      newOrder = singleSorter.order === 'ascend' ? 'asc' : 'desc';
+    }
+
+    setSortState({ sortBy: newSortBy, order: newOrder });
+    // При изменении сортировки сбрасываем на первую страницу
+    setCurrentPage(1);
+  };
   const handleRefresh = () => refetch();
   const handleAdd = () => console.log('Добавить товар');
 
@@ -124,7 +183,13 @@ export const ProductsPage = () => {
             </div>
           </div>
 
-          <ProductsTable products={products} isLoading={isFetching} />
+          <ProductsTable
+            products={products}
+            isLoading={isFetching}
+            sortBy={sortBy}
+            sortOrder={order}
+            onChange={handleTableChange}
+          />
 
           <TablePagination
             current={currentPage}

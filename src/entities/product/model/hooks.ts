@@ -15,11 +15,16 @@ const mapApiProductToProduct = (apiProduct: ApiProduct): Product => ({
   imageUrl: apiProduct.thumbnail,
 });
 
-export const useProducts = (limit: number, skip: number) => {
+export const useProducts = (
+  limit: number,
+  skip: number,
+  sortBy?: string,
+  order?: 'asc' | 'desc'
+) => {
   return useQuery({
-    queryKey: ['products', limit, skip],
+    queryKey: ['products', limit, skip, sortBy, order],
     queryFn: async () => {
-      const data = await productApi.getProducts(limit, skip);
+      const data = await productApi.getProducts(limit, skip, sortBy, order);
       return {
         products: data.products.map(mapApiProductToProduct),
         total: data.total,
