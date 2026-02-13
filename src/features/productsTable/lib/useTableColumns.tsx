@@ -30,7 +30,7 @@ export const useTableColumns = ({
     {
       title: 'Наименование',
       key: 'name',
-      width: 300,
+      width: 400,
       sorter: false,
       render: (_, record) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
@@ -73,6 +73,7 @@ export const useTableColumns = ({
       dataIndex: 'vendor',
       key: 'vendor',
       align: 'center',
+      width: 300,
       sorter: true,
       sortOrder: getSortOrder(FIELDS_ENUM.BRAND),
       render: (text) => (
