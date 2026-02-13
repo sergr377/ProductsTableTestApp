@@ -128,7 +128,7 @@ export const useTableColumns = ({
       },
     },
     {
-      title: 'Цена, ₽',
+      title: 'Цена, $',
       dataIndex: 'price',
       key: 'price',
       align: 'center',

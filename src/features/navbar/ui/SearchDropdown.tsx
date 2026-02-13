@@ -69,11 +69,7 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
   const { data, isLoading, isFetching } = useProductSearch(debouncedQuery, 10);
 
   useEffect(() => {
-    if (debouncedQuery.length < 2) {
-      setOpen(false);
-    } else {
-      setOpen(true);
-    }
+    setOpen(debouncedQuery.length >= 2);
   }, [debouncedQuery]);
 
   const options =
@@ -84,7 +80,7 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <span className={optionTitleStyle}>{product.title}</span>
           <span className={optionPriceStyle}>
-            {product.price.toLocaleString('ru-RU', { minimumFractionDigits: 2 })} ₽
+            {product.price.toLocaleString('ru-RU', { minimumFractionDigits: 2 })} $
           </span>
         </div>
       ),

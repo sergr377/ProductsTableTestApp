@@ -8,6 +8,7 @@ import { Navbar } from '../../../features/navbar';
 import { ProductsTable, TablePagination } from '../../../features/productsTable';
 import { PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import { SorterResult } from 'antd/es/table/interface';
+import { AddProductModal } from '../../../features/addProduct';
 
 const pageStyle = css`
   background-color: #f6f6f6;
@@ -70,6 +71,8 @@ type SortState = {
 };
 export const ProductsPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
   const pageSize = DEFAULT_PAGE_SIZE;
 
   // Состояние сортировки – инициализируем из localStorage
@@ -135,7 +138,14 @@ export const ProductsPage: React.FC = () => {
     setCurrentPage(1);
   };
   const handleRefresh = () => refetch();
-  const handleAdd = () => console.log('Добавить товар');
+  const handleAddClick = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const handleAddSuccess = () => {
+    setIsAddModalOpen(false);
+    // Здесь можно, например, обновить список товаров, но по условию не требуется
+  };
 
   if (isLoading) return <PageSpinner />;
 
@@ -161,8 +171,13 @@ export const ProductsPage: React.FC = () => {
       }}
     >
       <div className={pageStyle}>
-        <Navbar onRefresh={handleRefresh} onAdd={handleAdd} />
+        <Navbar onRefresh={handleRefresh} onAdd={handleAddClick} />
 
+        <AddProductModal
+          open={isAddModalOpen}
+          onCancel={() => setIsAddModalOpen(false)}
+          onSuccess={handleAddSuccess}
+        />
         <div className={tableContainerStyle}>
           <div className={tableHeaderStyle}>
             <h3 className={tableTitleStyle}>Все позиции</h3>
@@ -176,7 +191,7 @@ export const ProductsPage: React.FC = () => {
                 type="primary"
                 icon={<PlusOutlined />}
                 className={addButtonStyle}
-                onClick={handleAdd}
+                onClick={handleAddClick}
               >
                 Добавить
               </Button>
