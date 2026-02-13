@@ -1,7 +1,9 @@
-import { Typography } from 'antd';
+import { Button, Typography } from 'antd';
 import { css } from '@emotion/css';
 import { SearchDropdown } from './SearchDropdown';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { handleLogout } from '../../../shared/lib/auth';
 
 const { Title } = Typography;
 
@@ -55,12 +57,22 @@ const addButtonStyle = css`
   }
 `;
 
+const logoutButtonStyle = css`
+  border: 1px solid #ececeb;
+  border-radius: 8px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px; /* небольшой отступ от соседних кнопок */
+`;
 interface Props {
   onRefresh?: () => void;
   onAdd?: () => void;
 }
 
 export const Navbar = ({ onRefresh, onAdd }: Props) => {
+  const navigate = useNavigate();
   const handleProductSelect = (value: string, product: any) => {
     console.log('Выбран товар:', product);
     // Здесь можно добавить навигацию на страницу товара или другое действие
@@ -74,6 +86,9 @@ export const Navbar = ({ onRefresh, onAdd }: Props) => {
         </Title>
         <SearchDropdown placeholder="Найти" onSelect={handleProductSelect} />
       </div>
+      <Button className={logoutButtonStyle} onClick={() => handleLogout(navigate)} title="Выйти">
+        Выйти
+      </Button>
     </div>
   );
 };

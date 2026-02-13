@@ -68,7 +68,7 @@ type SortState = {
   sortBy?: string;
   order?: 'asc' | 'desc';
 };
-export const ProductsPage = () => {
+export const ProductsPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = DEFAULT_PAGE_SIZE;
 
