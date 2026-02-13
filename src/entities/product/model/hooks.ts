@@ -33,3 +33,12 @@ export const useProducts = (
     placeholderData: (prev) => prev,
   });
 };
+
+export const useProductSearch = (query: string, limit = 10) => {
+  return useQuery({
+    queryKey: ['productSearch', query, limit],
+    queryFn: () => productApi.searchProducts(query, limit),
+    enabled: query.length >= 2, // запускаем запрос только если >=2 символов
+    placeholderData: (prev) => prev,
+  });
+};

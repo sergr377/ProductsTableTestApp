@@ -10,4 +10,7 @@ export const productApi = {
     }
     return apiClient<ApiResponse>(url);
   },
+
+  searchProducts: (q: string, limit = 10) =>
+    apiClient<ApiResponse>(`/products/search?q=${encodeURIComponent(q)}&limit=${limit}`),
 };

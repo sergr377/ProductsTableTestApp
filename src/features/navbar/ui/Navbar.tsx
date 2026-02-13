@@ -1,6 +1,6 @@
-import { Input, Space, Button, Typography } from 'antd';
-import { ReloadOutlined, PlusOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
 import { css } from '@emotion/css';
+import { SearchDropdown } from './SearchDropdown';
 import React from 'react';
 
 const { Title } = Typography;
@@ -17,34 +17,20 @@ const navCardStyle = css`
 `;
 
 const navLeftStyle = css`
-  display: flex;
-  align-items: center;
+  width: 100%;
   gap: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
 `;
 
 const pageTitleStyle = css`
+  grid-column: 1;
   font-family: 'Cairo', sans-serif;
   font-weight: 700;
   font-size: 24px;
   color: #202020;
   margin: 0 !important;
-`;
-
-const searchInputStyle = css`
-  width: 320px;
-  .ant-input {
-    background-color: #f3f3f3;
-    border-radius: 8px;
-    border: none;
-    &::placeholder {
-      color: #999;
-    }
-  }
-  .ant-input-search-button {
-    background-color: #f3f3f3;
-    border: none;
-    color: #999;
-  }
 `;
 
 const refreshButtonStyle = css`
@@ -75,20 +61,19 @@ interface Props {
 }
 
 export const Navbar = ({ onRefresh, onAdd }: Props) => {
+  const handleProductSelect = (value: string, product: any) => {
+    console.log('Выбран товар:', product);
+    // Здесь можно добавить навигацию на страницу товара или другое действие
+  };
+
   return (
     <div className={navCardStyle}>
       <div className={navLeftStyle}>
         <Title level={2} className={pageTitleStyle}>
           Товары
         </Title>
-        <Input.Search placeholder="Найти" className={searchInputStyle} allowClear />
+        <SearchDropdown placeholder="Найти" onSelect={handleProductSelect} />
       </div>
-      <Space size={16}>
-        <Button icon={<ReloadOutlined />} className={refreshButtonStyle} onClick={onRefresh} />
-        <Button type="primary" icon={<PlusOutlined />} className={addButtonStyle} onClick={onAdd}>
-          Добавить
-        </Button>
-      </Space>
     </div>
   );
 };

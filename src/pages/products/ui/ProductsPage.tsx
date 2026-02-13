@@ -12,7 +12,7 @@ import { SorterResult } from 'antd/es/table/interface';
 const pageStyle = css`
   background-color: #f6f6f6;
   min-height: 100vh;
-  padding: 20px 30px;
+  padding: 20px 0;
 `;
 
 const tableContainerStyle = css`
@@ -111,7 +111,7 @@ export const ProductsPage = () => {
     filters: unknown,
     sorter: SorterResult<Product> | SorterResult<Product>[]
   ) => {
-    // Ant Design может вернуть массив при множественной сортировке, но мы используем одиночную
+    // Ant может вернуть массив при множественной сортировке, но мы используем одиночную
     const singleSorter = Array.isArray(sorter) ? sorter[0] : sorter;
 
     let newSortBy: string | undefined;
@@ -143,7 +143,7 @@ export const ProductsPage = () => {
     return (
       <div className={pageStyle}>
         <Alert
-          message="Ошибка загрузки данных"
+          title="Ошибка загрузки данных"
           description={error instanceof Error ? error.message : 'Неизвестная ошибка'}
           type="error"
           showIcon
