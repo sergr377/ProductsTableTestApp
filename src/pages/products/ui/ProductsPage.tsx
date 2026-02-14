@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/css';
-import { Alert, Button, ConfigProvider, TablePaginationConfig } from 'antd';
+import { Alert, Button, TablePaginationConfig } from 'antd';
 import { DEFAULT_PAGE_SIZE, SORT_STORAGE_KEY } from '../../../shared/config/constants';
 import { Product, useProducts } from '../../../entities/product';
 import { PageSpinner } from '../../../shared/ui/PageSpinner';
@@ -163,59 +163,51 @@ export const ProductsPage: React.FC = () => {
   }
 
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          fontFamily: 'Inter, sans-serif',
-        },
-      }}
-    >
-      <div className={pageStyle}>
-        <Navbar onRefresh={handleRefresh} onAdd={handleAddClick} />
+    <div className={pageStyle}>
+      <Navbar onRefresh={handleRefresh} onAdd={handleAddClick} />
 
-        <AddProductModal
-          open={isAddModalOpen}
-          onCancel={() => setIsAddModalOpen(false)}
-          onSuccess={handleAddSuccess}
-        />
-        <div className={tableContainerStyle}>
-          <div className={tableHeaderStyle}>
-            <h3 className={tableTitleStyle}>Все позиции</h3>
-            <div className={actionButtonsStyle}>
-              <Button
-                icon={<ReloadOutlined />}
-                className={refreshButtonStyle}
-                onClick={handleRefresh}
-              />
-              <Button
-                type="primary"
-                icon={<PlusOutlined />}
-                className={addButtonStyle}
-                onClick={handleAddClick}
-              >
-                Добавить
-              </Button>
-            </div>
+      <AddProductModal
+        open={isAddModalOpen}
+        onCancel={() => setIsAddModalOpen(false)}
+        onSuccess={handleAddSuccess}
+      />
+      <div className={tableContainerStyle}>
+        <div className={tableHeaderStyle}>
+          <h3 className={tableTitleStyle}>Все позиции</h3>
+          <div className={actionButtonsStyle}>
+            <Button
+              icon={<ReloadOutlined />}
+              className={refreshButtonStyle}
+              onClick={handleRefresh}
+            />
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              className={addButtonStyle}
+              onClick={handleAddClick}
+            >
+              Добавить
+            </Button>
           </div>
-
-          <ProductsTable
-            products={products}
-            isLoading={isFetching}
-            sortBy={sortBy}
-            sortOrder={order}
-            onChange={handleTableChange}
-          />
-
-          <TablePagination
-            current={currentPage}
-            total={totalItems}
-            pageSize={pageSize}
-            onChange={setCurrentPage}
-            startItem={startItem}
-            endItem={endItem}
-          />
         </div>
+
+        <ProductsTable
+          products={products}
+          isLoading={isFetching}
+          sortBy={sortBy}
+          sortOrder={order}
+          onChange={handleTableChange}
+        />
+
+        <TablePagination
+          current={currentPage}
+          total={totalItems}
+          pageSize={pageSize}
+          onChange={setCurrentPage}
+          startItem={startItem}
+          endItem={endItem}
+        />
       </div>
-    </ConfigProvider>
+    </div>
   );
 };

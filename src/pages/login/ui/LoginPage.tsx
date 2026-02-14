@@ -19,15 +19,19 @@ const cardStyle = css`
   background: white;
   border-radius: 40px;
   box-shadow: 0 24px 32px rgba(0, 0, 0, 0.04);
-  padding: 48px;
   width: 527px;
-  max-width: 90%;
+  height: 716px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const logoContainerStyle = css`
   display: flex;
   justify-content: center;
   margin-bottom: 32px;
+  margin-top: 48px;
+  padding: 0 48px;
 `;
 
 const logoStyle = css`
@@ -48,30 +52,33 @@ const logoStyle = css`
 `;
 
 const welcomeTitleStyle = css`
-  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 40px;
   line-height: 1.1;
   color: #232323;
   text-align: center;
-  margin-bottom: 0;
 `;
 
 const subtitleStyle = css`
-  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 1.5;
   color: #e0e0e0;
   text-align: center;
-  margin-bottom: 32px;
+  margin-top: 12px;
+  margin-bottom: 30px;
 `;
 
 const formItemStyle = css`
-  margin-bottom: 16px;
+  margin-bottom: 12px;
+  span {
+    font-weight: 500;
+    font-size: 18px;
+  }
 `;
 
 const inputStyle = css`
+  width: 400px;
   border-radius: 12px;
   border: 1px solid #ededed;
   padding: 14px 16px;
@@ -79,14 +86,6 @@ const inputStyle = css`
   &:hover,
   &:focus {
     border-color: #242edb;
-  }
-`;
-
-const checkboxStyle = css`
-  margin-bottom: 20px;
-  .ant-checkbox-inner {
-    border-radius: 4px;
-    border-color: #b2b3b9;
   }
 `;
 
@@ -106,24 +105,19 @@ const buttonStyle = css`
 `;
 
 const dividerStyle = css`
-  margin: 24px 0;
   .ant-divider-inner-text {
-    font-family: 'Inter', sans-serif;
     font-size: 16px;
     color: #ebebeb;
   }
 `;
 
 const linkStyle = css`
-  font-family: 'Inter', sans-serif;
   font-size: 18px;
   color: #6c6c6c;
   text-align: center;
   display: block;
-  & .ant-typography {
-    color: #242edb;
-    font-weight: 600;
-    text-decoration: underline;
+  u {
+    font-size: 18px;
   }
 `;
 
@@ -185,7 +179,7 @@ export const LoginPage: React.FC = () => {
           </div>
         </div>
 
-        <Title level={2} className={welcomeTitleStyle}>
+        <Title level={1} className={welcomeTitleStyle} style={{ margin: 0 }}>
           Добро пожаловать!
         </Title>
         <Text className={subtitleStyle}>Пожалуйста, авторизируйтесь</Text>
@@ -211,6 +205,7 @@ export const LoginPage: React.FC = () => {
           requiredMark={false}
         >
           <Form.Item
+            label={<span>Логин</span>}
             name="username"
             rules={[{ required: true, message: 'Введите логин' }]}
             className={formItemStyle}
@@ -224,6 +219,7 @@ export const LoginPage: React.FC = () => {
           </Form.Item>
 
           <Form.Item
+            label={<span>Пароль</span>}
             name="password"
             rules={[{ required: true, message: 'Введите пароль' }]}
             className={formItemStyle}
@@ -236,7 +232,7 @@ export const LoginPage: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item name="remember" valuePropName="checked" className={checkboxStyle}>
+          <Form.Item name="remember" valuePropName="checked" className={formItemStyle}>
             <Checkbox>Запомнить данные</Checkbox>
           </Form.Item>
 
@@ -253,11 +249,13 @@ export const LoginPage: React.FC = () => {
           </Form.Item>
         </Form>
 
-        <Divider className={dividerStyle}>или</Divider>
+        <Divider style={{ marginTop: 0 }} className={dividerStyle}>
+          или
+        </Divider>
 
         {/* Ссылка на создание аккаунта (пока без функционала) */}
         <div className={linkStyle}>
-          <Text>Нет аккаунта? </Text>
+          <Text style={{ fontSize: 18 }}>Нет аккаунта? </Text>
           <Link href="#" underline>
             Создать
           </Link>

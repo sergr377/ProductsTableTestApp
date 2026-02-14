@@ -25,7 +25,6 @@ const dropdownWrapperStyle = css`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Inter', sans-serif;
   }
 `;
 

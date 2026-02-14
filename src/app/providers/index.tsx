@@ -5,6 +5,14 @@ import ruRU from 'antd/locale/ru_RU';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => (
   <QueryClientProvider client={queryClient}>
-    <ConfigProvider locale={ruRU}>{children}</ConfigProvider>
+    <ConfigProvider
+      theme={{
+        token: {
+          fontFamily: 'Inter, sans-serif',
+        },
+      }}
+    >
+      <ConfigProvider locale={ruRU}>{children}</ConfigProvider>
+    </ConfigProvider>
   </QueryClientProvider>
 );
