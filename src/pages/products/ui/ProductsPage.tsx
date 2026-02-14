@@ -6,7 +6,6 @@ import { Product, useProducts } from '../../../entities/product';
 import { PageSpinner } from '../../../shared/ui/PageSpinner';
 import { Navbar } from '../../../features/navbar';
 import { ProductsTable, TablePagination } from '../../../features/productsTable';
-import { PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import { SorterResult } from 'antd/es/table/interface';
 import { AddProductModal } from '../../../features/addProduct';
 import { IconElement } from '../../../shared/ui/IconElement';

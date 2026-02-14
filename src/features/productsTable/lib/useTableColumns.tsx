@@ -117,15 +117,18 @@ export const useTableColumns = ({
       render: (text) => {
         const ratingValue = parseFloat(text.split('/')[0]);
         const isLowRating = ratingValue < 4.0;
+        const parts = text.split('/');
         return (
           <span
             style={{
               fontFamily: 'Open Sans, sans-serif',
               fontSize: 16,
-              color: isLowRating ? 'var(--color-error)' : 'var(--color-black)',
             }}
           >
-            {text}
+            <span style={{ color: isLowRating ? 'var(--color-error)' : 'inherit' }}>
+              {parts[0]}
+            </span>
+            /{parts[1]}
           </span>
         );
       },

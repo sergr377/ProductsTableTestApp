@@ -3,9 +3,14 @@ import { AutoComplete, Spin, Input } from 'antd';
 import { css } from '@emotion/css';
 import { useDebounce } from '../../../shared/lib/hooks/useDebounce';
 import { useProductSearch } from '../../../entities/product/model/hooks';
+import { IconElement } from '../../../shared/ui/IconElement';
 
 // Стили для обёртки и дропдауна
 const dropdownWrapperStyle = css`
+  input {
+    font-family: 'Roboto Mono, monospace', serif !important;
+  }
+
   grid-column: 2; /* помещаем во вторую колонку */
   justify-self: center;
   width: 50%;
@@ -115,7 +120,19 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
         variant={'filled'}
         allowClear={true}
         size={'large'}
-        placeholder={placeholder}
+        placeholder={
+          <div
+            style={{
+              display: 'flex',
+              fontFamily: 'Roboto Mono, monospace',
+              alignItems: 'center',
+              gap: 8,
+            }}
+          >
+            <IconElement name="Search" fill={'var(--color-bg-input)'} />
+            <span>Найти</span>
+          </div>
+        }
       />
     </div>
   );

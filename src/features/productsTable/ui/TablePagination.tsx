@@ -64,7 +64,8 @@ export const TablePagination = ({
   return (
     <div className={footerStyle}>
       <Text className={paginationInfoStyle}>
-        Показано {startItem}-{endItem} из {total}
+        <span style={{ color: 'var(--color-text-light)' }}>Показано</span> {startItem}-{endItem}{' '}
+        <span style={{ color: 'var(--color-text-light)' }}>из</span> {total}
       </Text>
       <Pagination
         current={current}

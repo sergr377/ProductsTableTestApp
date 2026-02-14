@@ -3,7 +3,8 @@ import { ReactComponent as ArrowsClockwise } from './icons/ArrowsClockwise.svg';
 import { ReactComponent as PlusCircle } from './icons/PlusCircle.svg';
 import { ReactComponent as ThreeDots } from './icons/ThreeDots.svg';
 import { ReactComponent as Cross } from './icons/Cross.svg';
+import { ReactComponent as Search } from './icons/search.svg';
 
-const icons = { logo, ArrowsClockwise, PlusCircle, ThreeDots, Cross };
+const icons = { logo, ArrowsClockwise, PlusCircle, ThreeDots, Cross, Search };
 
 export default icons;
