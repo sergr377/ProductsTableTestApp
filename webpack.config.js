@@ -20,6 +20,15 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack', 'file-loader'],
+        type: 'javascript/auto', // важно для Webpack 5, чтобы избежать конфликта с asset modules
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   resolve: {

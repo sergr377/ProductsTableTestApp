@@ -4,6 +4,7 @@ import { css } from '@emotion/css';
 import { Form, Input, Checkbox, Button, Typography, Alert, Avatar, Divider } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { getAccessToken, setAccessToken } from '../../../shared/lib/auth';
+import { IconElement } from '../../../shared/ui/IconElement';
 
 const { Title, Text, Link } = Typography;
 
@@ -174,7 +175,7 @@ export const LoginPage: React.FC = () => {
       <div className={cardStyle}>
         <div className={logoContainerStyle}>
           <div className={logoStyle}>
-            <Avatar size={40} icon={<UserOutlined />} />
+            <Avatar size={40} icon={<IconElement name="logo" />} />
           </div>
         </div>
 

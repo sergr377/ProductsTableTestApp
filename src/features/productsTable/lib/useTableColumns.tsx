@@ -6,6 +6,7 @@ import { formatPrice } from '../../../shared/lib/format';
 import { EllipsisOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import React from 'react';
 import { FIELDS_ENUM, NAMES_ENUM } from '../../../shared/config/constants';
+import { IconElement } from '../../../shared/ui/IconElement';
 interface UseTableColumnsProps {
   sortBy?: FIELDS_ENUM;
   sortOrder?: 'asc' | 'desc';
@@ -157,7 +158,7 @@ export const useTableColumns = ({
         <Space size={32}>
           <Button
             type="text"
-            icon={<ShoppingCartOutlined />}
+            icon={<IconElement name="Cross" size={'auto'} />}
             style={{
               background: 'var(--color-primary)',
               color: 'var(--color-white)',
@@ -171,7 +172,7 @@ export const useTableColumns = ({
           />
           <Button
             type="text"
-            icon={<EllipsisOutlined rotate={90} />}
+            icon={<IconElement name="ThreeDots" fill={'var(--color-text-light)'} size={'auto'} />}
             style={{ fontSize: 24, color: 'var(--color-text-primary)' }}
           />
         </Space>

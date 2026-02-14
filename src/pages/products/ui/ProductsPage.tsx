@@ -9,6 +9,7 @@ import { ProductsTable, TablePagination } from '../../../features/productsTable'
 import { PlusOutlined, ReloadOutlined } from '@ant-design/icons';
 import { SorterResult } from 'antd/es/table/interface';
 import { AddProductModal } from '../../../features/addProduct';
+import { IconElement } from '../../../shared/ui/IconElement';
 
 const pageStyle = css`
   background-color: var(--color-bg-page);
@@ -53,6 +54,7 @@ const refreshButtonStyle = css`
 `;
 
 const addButtonStyle = css`
+  font-family: 'Cairo', sans-serif;
   background: var(--color-primary);
   border: none;
   border-radius: 6px;
@@ -176,14 +178,18 @@ export const ProductsPage: React.FC = () => {
           <h3 className={tableTitleStyle}>Все позиции</h3>
           <div className={actionButtonsStyle}>
             <Button
-              icon={<ReloadOutlined />}
+              size={'large'}
+              icon={<IconElement name="ArrowsClockwise" size={'lg'} />}
               className={refreshButtonStyle}
               onClick={handleRefresh}
             />
+
             <Button
+              size={'large'}
               type="primary"
-              icon={<PlusOutlined />}
+              icon={<IconElement name="PlusCircle" size={'lg'} />}
               className={addButtonStyle}
+              style={{ gap: 16 }}
               onClick={handleAddClick}
             >
               Добавить
