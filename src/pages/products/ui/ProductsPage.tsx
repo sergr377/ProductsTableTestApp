@@ -11,16 +11,16 @@ import { SorterResult } from 'antd/es/table/interface';
 import { AddProductModal } from '../../../features/addProduct';
 
 const pageStyle = css`
-  background-color: #f6f6f6;
+  background-color: var(--color-bg-page);
   min-height: 100vh;
   padding: 20px 0;
 `;
 
 const tableContainerStyle = css`
-  background: white;
+  background: var(--color-white);
   border-radius: 12px;
   padding: 24px 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 12px var(--overlay);
 `;
 
 const tableHeaderStyle = css`
@@ -34,7 +34,7 @@ const tableTitleStyle = css`
   font-family: 'Cairo', sans-serif;
   font-weight: 700;
   font-size: 20px;
-  color: #333;
+  color: var(--color-text-primary);
   margin: 0;
 `;
 
@@ -44,24 +44,24 @@ const actionButtonsStyle = css`
 `;
 
 const refreshButtonStyle = css`
-  border: 1px solid #ececeb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  color: #333;
+  color: var(--color-text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const addButtonStyle = css`
-  background: #242edb;
+  background: var(--color-primary);
   border: none;
   border-radius: 6px;
-  color: white;
+  color: var(--color-white);
   display: flex;
   align-items: center;
   gap: 8px;
   &:hover {
-    background: #1a24b0;
+    background: var(--color-primary-hover);
   }
 `;
 // Тип сортировки

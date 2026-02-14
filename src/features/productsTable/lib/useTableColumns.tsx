@@ -5,7 +5,7 @@ import { formatPrice } from '../../../shared/lib/format';
 
 import { EllipsisOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import React from 'react';
-import { FIELDS_ENUM } from '../../../shared/config/constants';
+import { FIELDS_ENUM, NAMES_ENUM } from '../../../shared/config/constants';
 interface UseTableColumnsProps {
   sortBy?: FIELDS_ENUM;
   sortOrder?: 'asc' | 'desc';
@@ -25,10 +25,12 @@ export const useTableColumns = ({
       title: '',
       key: 'checkbox',
       width: 60,
-      render: () => <Checkbox style={{ borderRadius: 4, borderColor: '#b2b3b9' }} />,
+      render: () => (
+        <Checkbox style={{ borderRadius: 4, borderColor: 'var(--color-text-light)' }} />
+      ),
     },
     {
-      title: 'Наименование',
+      title: NAMES_ENUM.NAME,
       key: 'name',
       width: 400,
       sorter: false,
@@ -47,7 +49,7 @@ export const useTableColumns = ({
                 fontFamily: 'Cairo, sans-serif',
                 fontWeight: 700,
                 fontSize: 16,
-                color: '#222',
+                color: 'var(--color-text-secondary)',
                 textOverflow: `ellipsis`,
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
@@ -59,7 +61,7 @@ export const useTableColumns = ({
               style={{
                 fontFamily: 'Cairo, sans-serif',
                 fontSize: 14,
-                color: '#b2b3b9',
+                color: 'var(--color-text-light)',
               }}
             >
               {record.category}
@@ -69,7 +71,7 @@ export const useTableColumns = ({
       ),
     },
     {
-      title: 'Вендор',
+      title: NAMES_ENUM.VENDOR,
       dataIndex: 'vendor',
       key: 'vendor',
       align: 'center',
@@ -89,7 +91,7 @@ export const useTableColumns = ({
       ),
     },
     {
-      title: 'Артикул',
+      title: NAMES_ENUM.SKU,
       dataIndex: 'sku',
       key: 'sku',
       align: 'center',
@@ -105,7 +107,7 @@ export const useTableColumns = ({
       ),
     },
     {
-      title: 'Оценка',
+      title: NAMES_ENUM.RATING,
       dataIndex: 'rating',
       key: 'rating',
       align: 'center',
@@ -119,7 +121,7 @@ export const useTableColumns = ({
             style={{
               fontFamily: 'Open Sans, sans-serif',
               fontSize: 16,
-              color: isLowRating ? '#f11010' : '#000',
+              color: isLowRating ? 'var(--color-error)' : 'var(--color-black)',
             }}
           >
             {text}
@@ -128,7 +130,7 @@ export const useTableColumns = ({
       },
     },
     {
-      title: 'Цена, $',
+      title: NAMES_ENUM.PRICE,
       dataIndex: 'price',
       key: 'price',
       align: 'center',
@@ -139,7 +141,7 @@ export const useTableColumns = ({
           style={{
             fontFamily: 'Roboto Mono, monospace',
             fontSize: 16,
-            color: '#222',
+            color: 'var(--color-text-secondary)',
           }}
         >
           {formatPrice(price)}
@@ -157,8 +159,8 @@ export const useTableColumns = ({
             type="text"
             icon={<ShoppingCartOutlined />}
             style={{
-              background: '#242edb',
-              color: 'white',
+              background: 'var(--color-primary)',
+              color: 'var(--color-white)',
               borderRadius: 23,
               width: 52,
               height: 27,
@@ -170,7 +172,7 @@ export const useTableColumns = ({
           <Button
             type="text"
             icon={<EllipsisOutlined rotate={90} />}
-            style={{ fontSize: 24, color: '#333' }}
+            style={{ fontSize: 24, color: 'var(--color-text-primary)' }}
           />
         </Space>
       ),

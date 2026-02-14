@@ -8,7 +8,7 @@ import { getAccessToken, setAccessToken } from '../../../shared/lib/auth';
 const { Title, Text, Link } = Typography;
 
 const pageStyle = css`
-  background-color: #f9f9f9;
+  background-color: var(--color-bg-page);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -16,9 +16,9 @@ const pageStyle = css`
 `;
 
 const cardStyle = css`
-  background: white;
+  background: var(--color-white);
   border-radius: 40px;
-  box-shadow: 0 24px 32px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 24px 32px var(--overlay);
   width: 527px;
   height: 716px;
   display: flex;
@@ -37,7 +37,7 @@ const logoContainerStyle = css`
 const logoStyle = css`
   width: 52px;
   height: 52px;
-  background: white;
+  background: var(--color-bg-card);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -47,7 +47,7 @@ const logoStyle = css`
     0 0 0 2px rgba(237, 237, 237, 0.7) inset;
   .ant-avatar {
     background: transparent;
-    color: #232323;
+    color: var(--color-bg-logo);
   }
 `;
 
@@ -55,7 +55,7 @@ const welcomeTitleStyle = css`
   font-weight: 600;
   font-size: 40px;
   line-height: 1.1;
-  color: #232323;
+  color: var(--color-bg-logo);
   text-align: center;
 `;
 
@@ -63,7 +63,7 @@ const subtitleStyle = css`
   font-weight: 500;
   font-size: 18px;
   line-height: 1.5;
-  color: #e0e0e0;
+  color: var(--color-text-subtle);
   text-align: center;
   margin-top: 12px;
   margin-bottom: 30px;
@@ -80,40 +80,40 @@ const formItemStyle = css`
 const inputStyle = css`
   width: 400px;
   border-radius: 12px;
-  border: 1px solid #ededed;
+  border: 1px solid var(--color-input-border);
   padding: 14px 16px;
   height: auto;
   &:hover,
   &:focus {
-    border-color: #242edb;
+    border-color: var(--color-primary);
   }
 `;
 
 const buttonStyle = css`
-  background: #242edb;
+  background: var(--color-primary);
   border: none;
   border-radius: 12px;
   height: 54px;
   font-size: 18px;
   font-weight: 600;
   box-shadow:
-    0 8px 8px rgba(0, 0, 0, 0.04),
+    0 8px 8px var(--overlay),
     0 -2px 0 rgba(0, 0, 0, 0.08) inset;
   &:hover {
-    background: #1a24b0;
+    background: var(--color-primary-hover);
   }
 `;
 
 const dividerStyle = css`
   .ant-divider-inner-text {
     font-size: 16px;
-    color: #ebebeb;
+    color: var(--color-text-or);
   }
 `;
 
 const linkStyle = css`
   font-size: 18px;
-  color: #6c6c6c;
+  color: var(--color-text-muted);
   text-align: center;
   display: block;
   u {
@@ -151,7 +151,6 @@ export const LoginPage: React.FC = () => {
           password: values.password,
           expiresInMins: 30,
         }),
-        // credentials: 'include',
       });
       const data = await response.json();
       if (!response.ok) {
@@ -211,7 +210,7 @@ export const LoginPage: React.FC = () => {
             className={formItemStyle}
           >
             <Input
-              prefix={<UserOutlined style={{ color: '#232323', marginRight: 8 }} />}
+              prefix={<UserOutlined style={{ color: 'var(--color-bg-logo)', marginRight: 8 }} />}
               placeholder="Логин"
               className={inputStyle}
               size="large"
@@ -225,7 +224,7 @@ export const LoginPage: React.FC = () => {
             className={formItemStyle}
           >
             <Input.Password
-              prefix={<LockOutlined style={{ color: '#232323', marginRight: 8 }} />}
+              prefix={<LockOutlined style={{ color: 'var(--color-bg-logo)', marginRight: 8 }} />}
               placeholder="Пароль"
               className={inputStyle}
               size="large"

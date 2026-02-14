@@ -8,14 +8,14 @@ import { handleLogout } from '../../../shared/lib/auth';
 const { Title } = Typography;
 
 const navCardStyle = css`
-  background: white;
+  background: var(--color-white);
   border-radius: 10px;
   padding: 20px 30px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px var(--overlay);
 `;
 
 const navLeftStyle = css`
@@ -31,36 +31,14 @@ const pageTitleStyle = css`
   font-family: 'Cairo', sans-serif;
   font-weight: 700;
   font-size: 24px;
-  color: #202020;
+  color: var(--color-text-dark);
   margin: 0 !important;
 `;
 
-const refreshButtonStyle = css`
-  border: 1px solid #ececeb;
-  border-radius: 8px;
-  color: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const addButtonStyle = css`
-  background: #242edb;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  &:hover {
-    background: #1a24b0;
-  }
-`;
-
 const logoutButtonStyle = css`
-  border: 1px solid #ececeb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  color: #333;
+  color: var(--color-text-primary);
   display: flex;
   align-items: center;
   justify-content: center;

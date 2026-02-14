@@ -13,31 +13,31 @@ const footerStyle = css`
 const paginationInfoStyle = css`
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
-  color: #333;
+  color: var(--color-text-primary);
 `;
 
 const paginationStyle = css`
   .ant-pagination-item {
     border-radius: 4px;
-    border: 1px solid #ececeb;
-    background: white;
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
     a {
-      color: #333;
+      color: var(--color-text-primary);
     }
     &-active {
-      background: #797fea;
-      border-color: #797fea;
+      background: var(--color-primary-light);
+      border-color: var(--color-primary-light);
       a {
-        color: white;
+        color: var(--color-white);
       }
     }
   }
   .ant-pagination-prev,
   .ant-pagination-next {
     .ant-pagination-item-link {
-      border: 1px solid #ececeb;
+      border: 1px solid var(--color-border);
       border-radius: 4px;
-      color: #333;
+      color: var(--color-text-primary);
     }
   }
 `;

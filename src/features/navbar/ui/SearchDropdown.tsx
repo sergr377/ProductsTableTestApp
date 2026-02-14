@@ -18,7 +18,7 @@ const dropdownWrapperStyle = css`
     padding: 10px 16px;
     transition: background 0.2s;
     &:hover {
-      background-color: #f5f5f5;
+      background-color: var(--color-bg-input);
     }
   }
   .ant-select-item-option-content {
@@ -28,28 +28,22 @@ const dropdownWrapperStyle = css`
   }
 `;
 
-const popupClass = css`
-  width: 400px !important;
-  max-height: 400px;
-  overflow-y: auto;
-`;
-
 const optionTitleStyle = css`
   font-size: 14px;
-  color: #1a1a1a;
+  color: var(--color-text-secondary);
 `;
 
 const optionPriceStyle = css`
   font-size: 14px;
   font-weight: 600;
-  color: #242edb;
+  color: var(--color-primary);
   font-family: 'Roboto Mono', monospace;
 `;
 
 const noResultsStyle = css`
   padding: 12px 16px;
   text-align: center;
-  color: #999;
+  color: var(--color-text-placeholder);
 `;
 
 interface SearchDropdownProps {

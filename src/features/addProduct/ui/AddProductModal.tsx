@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Form, Input, InputNumber, message } from 'antd';
+import { NAMES_ENUM } from '../../../shared/config/constants';
 
 interface AddProductModalProps {
   open: boolean;
@@ -47,7 +48,7 @@ export const AddProductModal: React.FC<AddProductModalProps> = ({ open, onCancel
       >
         <Form.Item
           name="name"
-          label="Наименование"
+          label={NAMES_ENUM.NAME}
           rules={[{ required: true, message: 'Введите наименование' }]}
         >
           <Input placeholder="Наименование товара" />
@@ -55,7 +56,7 @@ export const AddProductModal: React.FC<AddProductModalProps> = ({ open, onCancel
 
         <Form.Item
           name="price"
-          label="Цена, ₽"
+          label={NAMES_ENUM.PRICE}
           rules={[{ required: true, message: 'Введите цену' }]}
         >
           <InputNumber
@@ -68,7 +69,7 @@ export const AddProductModal: React.FC<AddProductModalProps> = ({ open, onCancel
 
         <Form.Item
           name="vendor"
-          label="Вендор"
+          label={NAMES_ENUM.VENDOR}
           rules={[{ required: true, message: 'Введите вендора' }]}
         >
           <Input placeholder="Вендор" />
@@ -76,7 +77,7 @@ export const AddProductModal: React.FC<AddProductModalProps> = ({ open, onCancel
 
         <Form.Item
           name="sku"
-          label="Артикул"
+          label={NAMES_ENUM.SKU}
           rules={[{ required: true, message: 'Введите артикул' }]}
         >
           <Input placeholder="Артикул" />
