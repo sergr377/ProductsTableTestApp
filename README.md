@@ -53,7 +53,7 @@
 
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/sergr377/ProductsTableTestApp.git
 
 # Установить зависимости
 npm install
